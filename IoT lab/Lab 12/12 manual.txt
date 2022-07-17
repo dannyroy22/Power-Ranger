@@ -1,0 +1,84 @@
+
+
+****12(A)
+
+Aim: To update readings to Thingspeak from Arduino using Tinkercad.
+
+PROGRAM:
+void setup() { Serial.begin(115200);
+delay(1000);
+//if you want thingsspeak through tinkercad use simulator wifi as your ssid Serial.println("AT+CWJAP=\"Simulator Wifi\",\"\"\r\n");
+delay(3000);
+}
+ 
+void loop() {
+{
+Serial.println("AT+CIPSTART=\"TCP\",\"api.thingspeak.com\",80\r\n"); delay(5000);
+int len = 57;//length of line 15 Serial.print("AT+CIPSEND="); Serial.println(len);
+delay(10);
+
+Serial.print("GET /update?api_key=ZRGGNNASXTIB4M3B&field1=120 HTTP/1.1\r\n"); // Change the field value to see the variations in the data
+delay(100); Serial.println("AT+CIPCLOSE=0\r\n"); delay(6000);
+}
+}
+
+
+***12(B)
+
+Aim: To interface Temperature sensor and ESP8266 with Arduino and update temperature reading to Thingspeak
+
+PROGRAM:
+void setup() { Serial.begin(115200); delay(1000);
+Serial.println("AT+CWJAP=\"Simulator Wifi\",\"\"\r\n"); delay(3000);
+}
+void loop() {
+{
+
+int sensorValue = analogRead(A0);
+
+float volt = (sensorValue/1020.0) * 4.9; //Volts float tempC = (volt -0.5) * 100; //Celcius Serial.println(tempC);
+ 
+Serial.println("AT+CIPSTART=\"TCP\",\"api.thingspeak.com\",80\r\n"); delay(5000);
+int len = 65; Serial.print("AT+CIPSEND="); Serial.println(len);
+delay(10);
+
+Serial.print("GET /update?api_key=EDLBQ1UJ9ZLNXD57&field1=" + String(tempC)
++" HTTP/1.1\r\n");
+delay(100); Serial.println("AT+CIPCLOSE=0\r\n"); delay(6000);
+}
+}
+
+*****12 (C)
+Aim: To interface LDR sensor, LED and ESP8266 with Arduino and update light intensity values to Thingspeak and tweet “LIGHT ON” message on tweeter when light intensity value is less than 300.
+
+
+PROGRAM:
+int ldr=A0;//Set A0(Analog Input) for LDR. int value=0;
+void setup()
+{
+Serial.begin(115200); pinMode(13,OUTPUT); delay(1000);
+Serial.println("AT+CWJAP=\"Simulator Wifi\",\"\"\r\n"); delay(3000);
+}
+void loop()
+{
+{
+value=analogRead(ldr);
+ 
+Serial.println("LDR value is :"); Serial.println(value); if(value<300)
+{
+digitalWrite(13,HIGH);
+}
+else
+{
+digitalWrite(13,LOW);//Turns the LED OFF in Light.
+}
+Serial.println("AT+CIPSTART=\"TCP\",\"thingspeak.com\",80"); delay(5000);
+int len = 65; Serial.print("AT+CIPSEND="); Serial.println(len);
+delay(10);
+Serial.print("GET /update?api_key=6WEDQNFN3GBKNCQ3&field1="+ String(value)
++" HTTP/1.1\r\n");
+delay(100); Serial.println("AT+CIPCLOSE=0\r\n"); delay(6000);
+}
+} 
+
+
