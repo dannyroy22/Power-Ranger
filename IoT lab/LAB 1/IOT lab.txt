@@ -1,0 +1,33 @@
+https://www.tinkercad.com/
+
+Join your Class  
+
+Class Code: DS32 5BZY J8ZM
+
+https://www.tinkercad.com/dashboard?type=circuits&collection=designs
+
+
+Pract 1 - Ref video -- https://www.youtube.com/watch?v=7fDrkBGL_og
+
+1000 millisecond(s) = 1 second 
+
+
+Lab 1 - Code - 
+
+// C++ code
+//
+void setup()
+{
+  pinMode(9, OUTPUT);
+}
+
+void loop()
+{
+  digitalWrite(9, HIGH);
+  delay(1000); // Wait for 1000 millisecond(s)
+  digitalWrite(9, LOW);
+  delay(1000); // Wait for 1000 millisecond(s)
+}
+
+
+

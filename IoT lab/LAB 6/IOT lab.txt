@@ -1,0 +1,33 @@
+https://www.tinkercad.com/
+
+Join your Class  
+
+Class Code: DS32 5BZY J8ZM
+
+
+
+
+Lab 6 - Code - 
+
+
+// C++ code
+//
+int sensor = 0;
+
+void setup()
+{
+  pinMode(A0, INPUT);
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  sensor = analogRead(A0);
+  Serial.println(sensor);
+  delay(100); // Wait for 100 millisecond(s)
+}
+
+
+
+
+

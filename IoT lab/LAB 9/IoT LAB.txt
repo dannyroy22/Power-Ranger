@@ -1,0 +1,30 @@
+https://www.tinkercad.com/
+
+Join your Class  
+
+Class Code: DS32 5BZY J8ZM
+
+
+Pract 9 - Ref video -- In classroom
+
+Lab 9 - Code - 
+
+// C++ code
+//
+#include <Servo.h>
+
+Servo servo_9;
+
+void setup()
+{
+  servo_9.attach(9, 500, 2500);
+}
+
+void loop()
+{
+  servo_9.write(90);
+  delay(1000); // Wait for 1000 millisecond(s)
+  servo_9.write(0);
+  delay(1000); // Wait for 1000 millisecond(s)
+}
+
